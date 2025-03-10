@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 40%;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h2 {
+            color: #333;
+        }
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result, .error {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        .result {
+            color: #28a745;
+        }
+        .error {
+            color: red;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Sales Prediction Model</h2>
+        <p>Enter the advertising budget details below to predict estimated sales.</p>
+        
+        <form action="/predict" method="post">
+            <input type="text" name="TV" placeholder="Enter TV Budget (e.g., 200.5)" required>
+            <input type="text" name="Radio" placeholder="Enter Radio Budget (e.g., 40.3)" required>
+            <input type="text" name="Newspaper" placeholder="Enter Newspaper Budget (e.g., 50.0)" required>
+            <button type="submit">Predict Sales</button>
+        </form>
+
+        {% if prediction_text %}
+            <div class="result">
+                <h3>{{ prediction_text }}</h3>
+            </div>
+        {% endif %}
+
+        {% if error_text %}
+            <div class="error">
+                <h3>{{ error_text }}</h3>
+            </div>
+        {% endif %}
+    </div>
+
+</body>
+</html>
